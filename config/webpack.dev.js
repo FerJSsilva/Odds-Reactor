@@ -3,9 +3,10 @@ const webpack = require("webpack")
 const HTMLWebpackPlugin = require("html-webpack-plugin")
 
 module.exports = {
-  entry: {
-    main: path.resolve(__dirname, "../src", "index.js"),
-  },
+  entry: [
+    'react-hot-loader/patch',
+    path.resolve(__dirname, "../src", "index.js"),
+  ],
   mode: "development",
   output: {
     filename: "[name]-bundle.js",
@@ -14,7 +15,8 @@ module.exports = {
   },
   devServer: {
     contentBase: "build",
-    overlay: true
+    overlay: true,
+    hot: true
   },
   module: {
     rules: [
@@ -50,6 +52,7 @@ module.exports = {
   plugins: [
     new HTMLWebpackPlugin({
       template: path.resolve(__dirname, '../public', 'index.html'),
-    })
+    }),
+    new webpack.HotModuleReplacementPlugin(),
   ]
 }
