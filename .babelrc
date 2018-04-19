@@ -9,6 +9,14 @@
     [
       "babel-plugin-dotenv",
       { "replacedModuleName": "babel-dotenv" }
+    ],
+    [
+      "import",
+      {
+        "libraryName": "antd",
+        "libraryDirectory": "es",
+        "style": "css"
+      }
     ]
   ]
 }
