@@ -5,6 +5,10 @@
     "stage-0"
   ],
   "plugins" : [
-    "transform-runtime"
+    "transform-runtime",
+    [
+      "babel-plugin-dotenv",
+      { "replacedModuleName": "babel-dotenv" }
+    ]
   ]
 }
