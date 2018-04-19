@@ -1,0 +1,30 @@
+{
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "node": false,
+    "jest": true
+  },
+  "extends": ["airbnb", "plugin:jest/recommended"],
+  "globals": {
+    "module": true,
+    "process": false
+  },
+  "settings": {
+    "import/resolver": {
+      "babel-module": {}
+    }
+  },
+  "plugins": [
+    "jest"
+  ],
+  "rules": {
+    "import/no-extraneous-dependencies": ["error", {
+      "devDependencies": ["__tests__/*", "**/*.test.{js,jsx}", "**/*.spec.{js,jsx}", "**/*.story.{js,jsx}", "stories/**"]
+    }],
+    "import/no-named-as-default": 0,
+    "no-console": ["error", { "allow": ["warn", "error"] }],
+    "linebreak-style": 0,
+    "import/prefer-default-export": 0
+  }
+}
