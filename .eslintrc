@@ -23,8 +23,9 @@
       "devDependencies": ["__tests__/*", "**/*.test.{js,jsx}", "**/*.spec.{js,jsx}", "**/*.story.{js,jsx}", "stories/**"]
     }],
     "import/no-named-as-default": 0,
+    "import/prefer-default-export": 0,
     "no-console": ["error", { "allow": ["warn", "error"] }],
     "linebreak-style": 0,
-    "import/prefer-default-export": 0
+    "react/prefer-stateless-function": [1, { "ignorePureComponents": true }]
   }
 }
