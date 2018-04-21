@@ -1,11 +1,11 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import store from './redux/store';
-import Router from './pages/Router';
+import Main from './pages/Main';
 
 const App = () => (
   <Provider store={store}>
-    <Router />
+    <Main />
   </Provider>
 );
 
