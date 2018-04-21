@@ -13,7 +13,6 @@ const Main = () => (
   <Router>
     <Switch>
       <Route exact path="/" component={Home} />
-      <Route exact path="/naruto" component={Home} />
       <Route component={NotFound} />
     </Switch>
   </Router>
