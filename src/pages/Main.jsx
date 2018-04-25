@@ -6,17 +6,33 @@ import {
   Switch,
 } from 'react-router-dom';
 
+import { Layout } from 'antd';
+
+import Header from '../layout/headerComponent/HeaderComponent';
+import Footer from '../layout/footerComponent/FooterComponent';
+// import Sidebar from '../layout/sidebarComponent/SidebarComponent';
+
 import Home from './home/Home';
 import NotFound from './notFound/NotFound';
 
+const { Content } = Layout;
+
 const Main = () => (
   <Router>
-    <Switch>
-      <Route exact path="/" component={Home} />
-      <Route component={NotFound} />
-    </Switch>
+    <Layout style={{ minHeight: '100vh' }}>
+      <Header />
+      <Layout>
+        {/* <Sidebar /> */}
+        <Content>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route component={NotFound} />
+          </Switch>
+        </Content>
+      </Layout>
+      <Footer />
+    </Layout>
   </Router>
 );
 
 export default Main;
-
