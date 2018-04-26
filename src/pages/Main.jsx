@@ -13,6 +13,7 @@ import Footer from '../layout/footerComponent/FooterComponent';
 // import Sidebar from '../layout/sidebarComponent/SidebarComponent';
 
 import Home from './home/Home';
+import Sample from './sample/Sample';
 import NotFound from './notFound/NotFound';
 
 const { Content } = Layout;
@@ -26,6 +27,7 @@ const Main = () => (
         <Content>
           <Switch>
             <Route exact path="/" component={Home} />
+            <Route path="/sample" component={Sample} />
             <Route component={NotFound} />
           </Switch>
         </Content>
