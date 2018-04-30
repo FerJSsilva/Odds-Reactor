@@ -22,29 +22,40 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        use: ["babel-loader"]
-      },
-      {
-        test: /\.css$/,
-        use: [
-          { loader: "style-loader" },
-          { loader: "css-loader" }
-        ]
-      },
-      {
-        test: /\.(png|jp(e*)g|svg)$/,
-        use: [
+        oneOf: [
           {
-            loader: "url-loader",
+            test: /\.(js|jsx)$/,
+            exclude: /node_modules/,
+            use: ["babel-loader"]
+          },
+          {
+            test: /\.css$/,
+            use: [
+              { loader: "style-loader" },
+              { loader: "css-loader" }
+            ]
+          },
+          {
+            test: /\.(png|jp(e*)g|svg)$/,
+            use: [
+              {
+                loader: "url-loader",
+                options: {
+                  limit: 10000,
+                  name: "data/[name].[ext]"
+                }
+              }
+            ]
+          },
+          {
+            exclude: [/\.(js|jsx|mjs)$/, /\.html$/, /\.json$/],
+            loader: require.resolve('file-loader'),
             options: {
-              limit: 10000,
-              name: "data/[name].[ext]"
-            }
-          }
-        ]
-      },
+              name: 'static/media/[name].[hash:8].[ext]',
+            },
+          },
+        ],
+      }
     ]
   },
   resolve: {
