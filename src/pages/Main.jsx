@@ -10,20 +10,22 @@ import { Layout } from 'antd';
 
 import Header from '../layout/headerComponent/HeaderComponent';
 import Footer from '../layout/footerComponent/FooterComponent';
-// import Sidebar from '../layout/sidebarComponent/SidebarComponent';
+import Sidebar from '../layout/sidebarComponent/SidebarComponent';
 
 import Home from './home/Home';
 import Sample from './sample/Sample';
 import NotFound from './notFound/NotFound';
+
+import '../assets/styles/styles.css';
 
 const { Content } = Layout;
 
 const Main = () => (
   <Router>
     <Layout style={{ minHeight: '100vh' }}>
-      <Header />
+      <Sidebar />
       <Layout>
-        {/* <Sidebar /> */}
+        <Header />
         <Content>
           <Switch>
             <Route exact path="/" component={Home} />
@@ -31,8 +33,8 @@ const Main = () => (
             <Route component={NotFound} />
           </Switch>
         </Content>
+        <Footer />
       </Layout>
-      <Footer />
     </Layout>
   </Router>
 );
