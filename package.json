@@ -8,7 +8,7 @@
   "license": "MIT",
   "scripts": {
     "start": "webpack-dev-server --config=config/webpack.dev.js",
-    "build": "webpack --config=config/webpack.dev.js",
+    "build": "webpack --config=config/webpack.prod.js",
     "server": "json-server --watch mock-server/db.json --port 3042"
   },
   "devDependencies": {
