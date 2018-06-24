@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Layout, Icon, Menu } from 'antd';
+import throttle from 'lodash.throttle';
 
 const { Sider } = Layout;
 const { SubMenu } = Menu;
@@ -7,7 +8,23 @@ const { SubMenu } = Menu;
 class SidebarComponent extends Component {
   state = {
     collapsed: false,
+    viewportWidth: 0,
   }
+
+  componentDidMount() {
+    this.saveViewportDimensions();
+    window.addEventListener('resize', this.saveViewportDimensions);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.saveViewportDimensions);
+  }
+
+  saveViewportDimensions = throttle(() => {
+    this.setState({
+      viewportWidth: window.innerWidth,
+    })
+  }, 250);
 
   toggleSideBar = () => {
     this.setState({
@@ -20,23 +37,18 @@ class SidebarComponent extends Component {
       <Sider
         className="custom-sidebar"
         breakpoint="sm"
-        trigger={null}
         collapsible
-        collapsed={this.state.collapsed}
+        onCollapse={this.toggleSideBar}
+        collapsedWidth={this.state.viewportWidth > 600 ? 80 : 0}
       >
         <div className="custom-sider-head">
-          {
-            !this.state.collapsed &&
-            <div className="fade-in">
-              <Icon type="setting" spin />
-              <span> Odds Reactor</span>
-            </div>
-          }
-          <Icon
-            onClick={this.toggleSideBar}
-            type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
-            style={{ cursor: 'pointer' }}
-          />
+          <div>
+            <Icon type="setting" spin />
+            {
+              !this.state.collapsed &&
+              <span className="fade-in"> Odds Reactor</span>
+            }
+          </div>
         </div>
         <Menu
           className="custom-menu"
