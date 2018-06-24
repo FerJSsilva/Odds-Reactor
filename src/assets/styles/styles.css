@@ -29,6 +29,10 @@
   background: #FAFAFA;
 }
 
+.margin-bottom-16 {
+  margin-bottom: 16px;
+}
+
 /* start of responsive style for menu mobile */
 @media only screen and (max-width: 600px) {
   .ant-layout-sider {
