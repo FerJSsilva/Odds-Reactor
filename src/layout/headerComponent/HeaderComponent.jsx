@@ -1,8 +1,7 @@
 import React from 'react';
-import { Avatar, Badge, Col, Dropdown, Icon, Input, Layout, Menu, Row } from 'antd';
+import { Avatar, Badge, Col, Dropdown, Icon, Layout, Menu, Row } from 'antd';
 
 const { Header } = Layout;
-const { Search } = Input;
 
 const menu = (
   <Menu>
@@ -22,20 +21,14 @@ const HeaderComponent = () => (
     className="custom-header"
   >
     <Row>
-      <Col span={8}>
-        <Search
-          placeholder="input search text"
-          onSearch={value => alert(value)}
-        />
-      </Col>
-      <Col span={16} style={{ display: 'flex', justifyContent: 'flex-end' }}>
+      <Col span={24} style={{ display: 'flex', justifyContent: 'flex-end' }}>
         <span>
           <Badge count={1}><Avatar icon="user" /></Badge>
         </span>
         <div className="user-info">
           <Dropdown overlay={menu} trigger={['click']}>
             <span style={{ marginLeft: '16px' }}>
-            user name <Icon type="down" />
+              user name <Icon type="down" />
             </span>
           </Dropdown>
         </div>
