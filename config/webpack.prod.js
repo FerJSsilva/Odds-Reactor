@@ -1,6 +1,13 @@
 const path = require("path")
 const webpack = require("webpack")
 const HTMLWebpackPlugin = require("html-webpack-plugin")
+const ManifestPlugin = require('webpack-manifest-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
+const enableBundleAnalyzer = process.env.ENABLE_ANALYZER === 'true';
 
 module.exports = {
   entry: [
@@ -8,8 +15,9 @@ module.exports = {
     path.resolve(__dirname, "../src", "index.js"),
   ],
   mode: "production",
+  devtool: 'source-map',
   output: {
-    filename: "[name]-bundle.js",
+    filename: "[name].[hash].js",
     path: path.resolve(__dirname, "../build"),
     publicPath: "/"
   },
@@ -31,7 +39,7 @@ module.exports = {
           {
             test: /\.css$/,
             use: [
-              { loader: "style-loader" },
+              { loader: MiniCssExtractPlugin.loader },
               { loader: "css-loader" }
             ]
           },
@@ -64,6 +72,17 @@ module.exports = {
   plugins: [
     new HTMLWebpackPlugin({
       template: path.resolve(__dirname, '../public', 'index.html'),
+    }),
+    new OptimizeCssAssetsPlugin(),
+    new MiniCssExtractPlugin({
+      filename: "[name].[hash:8].css",
+      chunkFilename: "[id].[hash:8].css"
+    }),
+    new MomentLocalesPlugin(),
+    new ManifestPlugin(),
+    new BundleAnalyzerPlugin({
+      analyzerMode: enableBundleAnalyzer === true ? 'static' : 'disabled',
+      openAnalyzer: true,
     }),
     new webpack.HotModuleReplacementPlugin(),
   ]
