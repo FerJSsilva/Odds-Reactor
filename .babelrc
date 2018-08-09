@@ -1,6 +1,12 @@
 {
     "presets": ["env","react","stage-0"],
     "env": {
+        "development": {
+          "plugins": [
+            "transform-runtime",
+            ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "css" }]
+          ]
+        },
         "production": {
           "plugins": [["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "css" }]]
         },

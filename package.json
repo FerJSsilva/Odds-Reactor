@@ -9,6 +9,7 @@
   "scripts": {
     "start": "webpack-dev-server --config=config/webpack.dev.js --hot",
     "start:reload": "webpack-dev-server --config=config/webpack.dev.js",
+    "start:style": "cross-env MAP_STYLE=true webpack-dev-server --config=config/webpack.dev.js --hot",
     "build": "cross-env BABEL_ENV=production webpack --config=config/webpack.prod.js",
     "analyze": "cross-env ENABLE_ANALYZER=true yarn build",
     "test": "jest",
@@ -35,6 +36,7 @@
     "babel-eslint": "8.2.3",
     "babel-loader": "^7.1.5",
     "babel-plugin-import": "^1.8.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
