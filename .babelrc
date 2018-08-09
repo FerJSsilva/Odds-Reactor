@@ -1,22 +1,11 @@
 {
-  "presets": [
-    "env",
-    "react",
-    "stage-0"
-  ],
-  "plugins" : [
-    "transform-runtime",
-    [
-      "babel-plugin-dotenv",
-      { "replacedModuleName": "babel-dotenv" }
-    ],
-    [
-      "import",
-      {
-        "libraryName": "antd",
-        "libraryDirectory": "es",
-        "style": "css"
+    "presets": ["env","react","stage-0"],
+    "env": {
+        "production": {
+          "plugins": [["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "css" }]]
+        },
+        "test": {
+          "plugins": ["transform-es2015-modules-commonjs"]
+        }
       }
-    ]
-  ]
 }
