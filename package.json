@@ -14,7 +14,7 @@
     "analyze": "cross-env ENABLE_ANALYZER=true yarn build",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "server": "json-server --watch mock-server/db.json --port 3042"
+    "server": "json-server --watch mock-server/db.json --port 3000"
   },
   "dependencies": {
     "antd": "^3.8.0",
