@@ -1,14 +1,30 @@
 import React, { Component } from 'react';
 import { Layout, Icon, Menu } from 'antd';
+import throttle from 'lodash.throttle';
 
 const { Sider } = Layout;
 const { SubMenu } = Menu;
 
-
 class SidebarComponent extends Component {
   state = {
     collapsed: false,
+    viewportWidth: 0,
   }
+
+  componentDidMount() {
+    this.saveViewportDimensions();
+    window.addEventListener('resize', this.saveViewportDimensions);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.saveViewportDimensions);
+  }
+
+  saveViewportDimensions = throttle(() => {
+    this.setState({
+      viewportWidth: window.innerWidth,
+    })
+  }, 250);
 
   toggleSideBar = () => {
     this.setState({
@@ -21,24 +37,18 @@ class SidebarComponent extends Component {
       <Sider
         className="custom-sidebar"
         breakpoint="sm"
-        trigger={null}
         collapsible
-        collapsed={this.state.collapsed}
+        onCollapse={this.toggleSideBar}
+        collapsedWidth={this.state.viewportWidth > 600 ? 80 : 0}
       >
         <div className="custom-sider-head">
-          {
-            !this.state.collapsed &&
-            <div className="fade-in">
-              <Icon type="setting" spin />
-              <span> Odds Reactor</span>
-            </div>
-          }
-
-          <Icon
-            onClick={this.toggleSideBar}
-            type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
-            style={{ cursor: 'pointer' }}
-          />
+          <div>
+            <Icon type="setting" spin />
+            {
+              !this.state.collapsed &&
+              <span className="fade-in"> Odds Reactor</span>
+            }
+          </div>
         </div>
         <Menu
           className="custom-menu"
@@ -46,13 +56,13 @@ class SidebarComponent extends Component {
           defaultSelectedKeys={['6']}
           mode="inline"
         >
-          <SubMenu key="sub2" title={<span><Icon type="appstore" /><span>Pessoas</span></span>}>
+          <SubMenu key="sub2" title={<span><Icon type="appstore" /><span>Subnav 1</span></span>}>
             <Menu.Item key="1">Option 1</Menu.Item>
             <Menu.Item key="2">Option 2</Menu.Item>
             <Menu.Item key="3">Option 3</Menu.Item>
             <Menu.Item key="4">Option 4</Menu.Item>
           </SubMenu>
-          <SubMenu key="sub1" title={<span><Icon type="mail" /><span>Jogos</span></span>}>
+          <SubMenu key="sub1" title={<span><Icon type="mail" /><span>Subnav 2</span></span>}>
             <Menu.Item key="5">Option 5</Menu.Item>
             <Menu.Item key="6">Option 6</Menu.Item>
             <Menu.Item key="7">Option 7</Menu.Item>

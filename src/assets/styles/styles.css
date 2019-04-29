@@ -9,6 +9,7 @@
 
 .custom-sidebar {
   background-color: #FAFAFA;
+  min-height: 100%;
 }
 
 .custom-sider-head {
@@ -28,8 +29,35 @@
   background: #FAFAFA;
 }
 
-/* start of fade in effect on logo */
+.margin-bottom-16 {
+  margin-bottom: 16px;
+}
 
+/* start of responsive style for menu mobile */
+@media only screen and (max-width: 600px) {
+  .ant-layout-sider {
+    position: absolute;
+    z-index: 100;
+}
+
+  .ant-layout-sider-collapsed {
+      position: absolute;
+  }
+}
+
+.ant-layout-sider-zero-width-trigger {
+  top: 12px;
+  background: #FAFAFA;
+  color: #575757;
+  font-size: 26px;
+}
+
+.ant-layout-sider-zero-width-trigger:hover {
+  background: #F0F2F5;
+}
+/* end of responsive style for menu mobile */
+
+/* start of fade in effect on logo */
 .fade-in {
   -webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
      -moz-animation: fadein 1s; /* Firefox < 16 */
@@ -66,5 +94,4 @@
   from { opacity: 0; }
   to   { opacity: 1; }
 }
-
 /* end of fade in effect on logo */

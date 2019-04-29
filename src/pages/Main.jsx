@@ -26,7 +26,7 @@ const Main = () => (
       <Sidebar />
       <Layout>
         <Header />
-        <Content>
+        <Content style={{ margin: '16px 16px 0 16px' }}>
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/sample" component={Sample} />

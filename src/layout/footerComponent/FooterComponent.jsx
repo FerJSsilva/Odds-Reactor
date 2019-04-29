@@ -4,14 +4,12 @@ import { Layout, Col, Row, Icon } from 'antd';
 const { Footer } = Layout;
 
 const FooterComponent = () => (
-  <Footer>
+  <Footer style={{ backgroundColor: '#FAFAFA' }}>
     <Row>
-      <Col span={8} offset={8} style={{ textAlign: 'center' }}>
+      <Col span={24} style={{ textAlign: 'center' }}>
         Odds Reactor ©2018 Created by FerJSsilva
-      </Col>
-      <Col span={8} style={{ display: 'flex', justifyContent: 'flex-end' }}>
-        <Icon type="tags" />
-        <span>version 0.1</span>
+        <br/>
+        version 0.1
       </Col>
     </Row>
   </Footer>
